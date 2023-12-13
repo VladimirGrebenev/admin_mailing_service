@@ -42,11 +42,11 @@ class Client(models.Model):
     )
 
 
-def validate_client_filter(value):
-    # Проверка условий валидации
-    if not value.startswith('operator_code:') and not value.startswith('tag:'):
-        raise ValidationError(
-            'Фильтр клиентов должен начинаться с "operator_code:" или "tag:"')
+# def validate_client_filter(value):
+#     # Проверка условий валидации
+#     if not value.startswith('operator_code:') and not value.startswith('tag:'):
+#         raise ValidationError(
+#             'Фильтр клиентов должен начинаться с "operator_code:" или "tag:"')
 
 
 class Dispatch(models.Model):

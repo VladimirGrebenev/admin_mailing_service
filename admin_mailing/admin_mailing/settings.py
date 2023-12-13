@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'admin_mailing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'admin_mailing_db',
+        'NAME': 'admin_mailing_service_db',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
@@ -155,4 +155,3 @@ REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
     'DATETIME_FORMAT': '%Y-%m-%d',
 }
-
