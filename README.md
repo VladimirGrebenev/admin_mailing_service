@@ -8,4 +8,4 @@ admin_mailing_service
 3. in terminal instal requirements: pip install -r requirements.txt
 4. in terminal start redis: redis-cerver
 5. in terminal start celery: celery -A admin_mailing worker --loglevel=info
-6. in terminal start servise: pyhton manage.py runserver
+6. in terminal start servise: python manage.py runserver
