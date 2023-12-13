@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'admin_mailing.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-
+# you database env setting
 DATABASES = {
     'default': {
         'ENGINE': os.getenv("DB_ENGINE"),
