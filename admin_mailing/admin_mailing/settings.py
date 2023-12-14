@@ -86,6 +86,9 @@ DATABASES = {
         'PASSWORD': os.getenv("DB_PASSWORD"),
         'HOST': os.getenv("DB_HOST"),
         'PORT': os.getenv("DB_PORT"),
+        'OPTIONS': {
+                    'options': os.getenv("c_timezone"),
+                },
     }
 }
 
@@ -113,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = os.getenv("TIME_ZONE")
 
 USE_I18N = True
 
@@ -132,7 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Настройки Celery
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # URL для вашего брокера сообщений (например, Redis)
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # URL для хранения результатов задач
-CELERY_TIMEZONE = 'Europe/Moscow'  # Часовой пояс для Celery
+CELERY_TIMEZONE = TIME_ZONE  # Часовой пояс для Celery
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -153,5 +156,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
-    'DATETIME_FORMAT': '%Y-%m-%d',
+    'DATETIME_FORMAT': '"%Y-%m-%d %H:%M"',
 }

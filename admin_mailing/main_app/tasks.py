@@ -6,10 +6,11 @@ import requests
 from admin_mailing.settings import TOKEN_BEARER
 
 
+
 @shared_task
 def process_dispatches():
     from .models import Dispatch, Message, Client
-    print(f'стартовал process_dispatches: {datetime.now()}')
+    print(f'стартовал process_dispatches: {datetime.now(timezone.utc)}')
     current_time = timezone.now()
     active_dispatches = Dispatch.objects.filter(
         start_datetime__lte=current_time,
@@ -55,7 +56,7 @@ def send_message_to_client(message):
         # Обработка случая, когда объект response является None или код состояния не равен 200
         handle_message_error(message, response)
 
-    print(f'response: {response}, type: {type(response)}, status_code '
+    print(f'response: {response}, message_id: {message.id}, status_code '
           f'{response.status_code}')
 
 

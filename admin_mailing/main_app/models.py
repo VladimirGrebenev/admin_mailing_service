@@ -50,13 +50,36 @@ class Client(models.Model):
 
 
 class Dispatch(models.Model):
+    '''
+    Класс Рассылки(Dispatch), при его создании автоматически создаются объекты
+    класса Сообщения(Message).
+    ...
+    Атрибуты
+    --------
+    uu_id : uuid4
+        уникальный pk
+    start_datetime : DateTimeField 'YYYY-MM-DD HH:MM'
+        начало рассылки
+    end_datetime : DateTimeField 'YYYY-MM-DD HH:MM'
+        конец рассылки
+    message_text : TextField
+        текст сообщения рассылки
+    tag_filter : str
+        произвольный тег для фильтрации клиентов
+    operator_code_filter: str
+        код оператора для фильтрации клиентов
+    '''
     uu_id = models.UUIDField(primary_key=True, default=uuid.uuid4,
                              editable=False)
-    start_datetime = models.DateTimeField()
+    start_datetime = models.DateTimeField(
+        help_text=("Введите дату и время старта в формате 'YYYY-MM-DD HH:MM'")
+    )
     message_text = models.TextField()
     tag_filter = models.CharField(max_length=50, blank=True)
     operator_code_filter = models.CharField(max_length=3, blank=True)
-    end_datetime = models.DateTimeField()
+    end_datetime = models.DateTimeField(
+        help_text=("Введите дату и время финиша в формате 'YYYY-MM-DD HH:MM'")
+    )
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -76,9 +99,17 @@ class Dispatch(models.Model):
 
     # валидация времени окончания рассылки (must be time.now() + 5 минут)
     def clean(self):
-        if self.end_datetime <= timezone.now() + timezone.timedelta(minutes=5):
+        start_datetime = datetime.strptime(self.start_datetime, "%Y-%m-%dT%H:%M")
+        end_datetime = datetime.strptime(self.end_datetime, "%Y-%m-%dT%H:%M")
+        if end_datetime <= datetime.now(timezone.utc) + timedelta(minutes=5):
             raise ValidationError(
                 "Минимальное время окончания должно быть больше текущего времени плюс 5 минут.")
+        if start_datetime >= end_datetime:
+            raise ValidationError(
+                "Время окончания должно быть больше времени начала.")
+        if end_datetime <= start_datetime + timedelta(minutes=5):
+            raise ValidationError(
+                "Интервал между временем начала и окончания должен быть не меньше 5 минут.")
 
 
 @receiver(post_save, sender=Dispatch)
