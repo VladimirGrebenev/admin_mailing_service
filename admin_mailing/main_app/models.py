@@ -74,6 +74,12 @@ class Dispatch(models.Model):
             message = Message.objects.create(dispatch=dispatch,
                                              client=client)
 
+    # валидация времени окончания рассылки (must be time.now() + 5 минут)
+    def clean(self):
+        if self.end_datetime <= timezone.now() + timezone.timedelta(minutes=5):
+            raise ValidationError(
+                "Минимальное время окончания должно быть больше текущего времени плюс 5 минут.")
+
 
 @receiver(post_save, sender=Dispatch)
 def process_dispatches_on_create(sender, instance, created, **kwargs):
