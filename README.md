@@ -20,10 +20,11 @@ admin service for mailing messenges to clients phone.
 14. enjoy
 
 # Logging
-all logging you can find in app dirictory in app.log file
+- all logging you can find in app dir in the app.log file
+- logger setting in the admin_mailing_service/admin_mailing/logging_config.py
 
 # API docs
-you are welcome to use Swagger UI, just add link /doc/ in your browser
+you are welcome to use Swagger UI, just add link /doc/ in your browser (http://127.0.0.1:8000/doc/)
 
 # Testing 
 - to run tests please go to the working dir: cd admin_mailing_service/admin_mailing/
