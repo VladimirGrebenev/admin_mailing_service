@@ -33,7 +33,8 @@ class Client(models.Model):
     phone_number = models.CharField(
         max_length=11,
         unique=True,
-        validators=[phone_number_validator]
+        validators=[phone_number_validator],
+        blank=False
     )
     operator_code = models.CharField(
         max_length=3,
