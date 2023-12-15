@@ -8,7 +8,7 @@ celery_app.config_from_object("django.conf:settings", namespace="CELERY")
 celery_app.autodiscover_tasks()
 
 
-# Здесь можно указать интервал выполнения задачи
+# Здесь можно указать интервал выполнения задачи инициализации рассылок
 celery_app.conf.beat_schedule = {
     'process_dispatches': {
         'task': 'main_app.tasks.process_dispatches',

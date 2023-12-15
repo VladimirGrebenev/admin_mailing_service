@@ -10,6 +10,7 @@ load_dotenv(dotenv_path=dot_env)
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 TOKEN_BEARER = os.getenv("TOKEN_BEARER")
+URL_SENDING_API_SERVICE = os.getenv("URL_SENDING_API_SERVICE")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")

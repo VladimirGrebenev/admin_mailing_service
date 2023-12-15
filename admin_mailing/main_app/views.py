@@ -25,7 +25,7 @@ class MessageLimitOffsetPagination(LimitOffsetPagination):
 
 
 class ClientListCreateView(generics.ListCreateAPIView):
-    '''List all Clients or create new Client'''
+    """List all Clients or create new Client"""
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     pagination_class = ClientLimitOffsetPagination
@@ -62,13 +62,13 @@ class ClientListCreateView(generics.ListCreateAPIView):
 
 
 class ClientRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    '''By client uu_id, you can retrieve, update or patch, delete client'''
+    """By client uu_id, you can retrieve, update or patch, delete client"""
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
 
 class DispatchListCreateView(generics.ListCreateAPIView):
-    '''List all Dispatches or create new Dispatch'''
+    """List all Dispatches or create new Dispatch"""
     queryset = Dispatch.objects.all()
     serializer_class = DispatchSerializer
     pagination_class = DispatchLimitOffsetPagination
@@ -76,13 +76,13 @@ class DispatchListCreateView(generics.ListCreateAPIView):
 
 
 class DispatchRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    '''By dispatch uu_id, you can retrieve, update or patch, delete dispatch'''
+    """By dispatch uu_id, you can retrieve, update or patch, delete dispatch"""
     queryset = Dispatch.objects.all()
     serializer_class = DispatchSerializer
 
 
 class MessageListCreateView(generics.ListCreateAPIView):
-    '''List all Messages or create new Message'''
+    """List all Messages or create new Message"""
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     pagination_class = MessageLimitOffsetPagination
@@ -90,6 +90,6 @@ class MessageListCreateView(generics.ListCreateAPIView):
 
 
 class MessageRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    '''By message uu_id, you can retrieve, update or patch, delete message'''
+    """By message uu_id, you can retrieve, update or patch, delete message"""
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
