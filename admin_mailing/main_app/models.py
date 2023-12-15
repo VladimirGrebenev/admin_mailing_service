@@ -42,33 +42,11 @@ class Client(models.Model):
     )
 
 
-# def validate_client_filter(value):
-#     # Проверка условий валидации
-#     if not value.startswith('operator_code:') and not value.startswith('tag:'):
-#         raise ValidationError(
-#             'Фильтр клиентов должен начинаться с "operator_code:" или "tag:"')
-
-
 class Dispatch(models.Model):
-    '''
+    """
     Класс Рассылки(Dispatch), при его создании автоматически создаются объекты
     класса Сообщения(Message).
-    ...
-    Атрибуты
-    --------
-    uu_id : uuid4
-        уникальный pk
-    start_datetime : DateTimeField 'YYYY-MM-DD HH:MM'
-        начало рассылки
-    end_datetime : DateTimeField 'YYYY-MM-DD HH:MM'
-        конец рассылки
-    message_text : TextField
-        текст сообщения рассылки
-    tag_filter : str
-        произвольный тег для фильтрации клиентов
-    operator_code_filter: str
-        код оператора для фильтрации клиентов
-    '''
+    """
     uu_id = models.UUIDField(primary_key=True, default=uuid.uuid4,
                              editable=False)
     start_datetime = models.DateTimeField(
