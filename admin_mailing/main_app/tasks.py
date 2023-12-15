@@ -68,8 +68,6 @@ def send_message_to_client(message):
         handle_message_error(message, response)
 
 
-
-
 def handle_message_error(message, error):
     """Обработчик ошибок при отправке сообщения через сторонний сервер"""
     # Обработка ошибок при отправке сообщений
@@ -82,4 +80,3 @@ def handle_message_error(message, error):
                 f'dispatch_id: {message.dispatch.uu_id}, '
                 f'client_id: {message.client.uu_id}'
                 )
-
