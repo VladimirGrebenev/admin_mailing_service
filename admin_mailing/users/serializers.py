@@ -3,6 +3,7 @@ from .models import CustomUser
 
 
 class UserModelSerializer(HyperlinkedModelSerializer):
+    """Сериалайзер класса CustomUser для представления"""
     class Meta:
         model = CustomUser
         fields = ['id', 'first_name', 'last_name', 'user_name', 'email', ]
@@ -17,6 +18,7 @@ class UserModelSerializer(HyperlinkedModelSerializer):
 
 
 class UserRegisterSerializer(HyperlinkedModelSerializer):
+    """Сериалайзер класса CustomUser для регистрации"""
     class Meta:
         model = CustomUser
         fields = ['id', 'user_name', 'email', 'password']

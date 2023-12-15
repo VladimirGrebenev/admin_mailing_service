@@ -9,6 +9,7 @@ from rest_framework import status
 
 class UserCustomViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin,
                         mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    """View для CRUD класса CustomUser с доступом только у администраторов"""
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = CustomUser.objects.all()
     serializer_class = UserModelSerializer
@@ -18,6 +19,8 @@ class UserCustomViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin,
         return CustomUser.objects.filter(is_active=True)
 
 class UserListAPIView(generics.ListAPIView):
+    """View для класса CustomUser с доступом только у администраторов,
+    для просмотра, с поддержкой версии API"""
     queryset = CustomUser.objects.all()
     serializer_class = UserModelSerializer
     permission_classes = [IsAdminUser]
@@ -28,6 +31,7 @@ class UserListAPIView(generics.ListAPIView):
         return UserModelSerializer
 
 class RegisterUserAPIView(generics.CreateAPIView):
+    """View для класса CustomUser для регистрации нового пользователя"""
     permission_classes = [AllowAny]
     queryset = CustomUser.objects.all()
     serializer_class = UserRegisterSerializer
