@@ -9,6 +9,7 @@ from .managers import CustomUserManager
 # Create your models here.
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    """Кастомная модель User, поле email при аутентификации"""
     id = models.UUIDField(default=uuid4, primary_key=True, verbose_name='id')
     first_name = models.CharField(max_length=64, verbose_name='firstname')
     last_name = models.CharField(max_length=64, verbose_name='lastname')
@@ -32,10 +33,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return f"{self.user_name}"
 
     def delete(self, *kwargs):
+        """Из базы данных пользователей не удаляем, просто помечаем
+        удалёнными"""
         self.deleted = True
         self.save()
 
     class Meta:
-        verbose_name = ("Пользователь Сервиса Рассылки")
-        verbose_name_plural = ("Пользователи Сервиса Рассылки")
+        verbose_name = ("Пользователь Сервиса Администрирования Рассылки")
+        verbose_name_plural = ("Пользователи Сервиса Администрирования "
+                               "Рассылки")
         ordering = ("-date_joined",)

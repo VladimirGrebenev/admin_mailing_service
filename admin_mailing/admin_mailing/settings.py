@@ -10,6 +10,7 @@ load_dotenv(dotenv_path=dot_env)
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 TOKEN_BEARER = os.getenv("TOKEN_BEARER")
+URL_SENDING_API_SERVICE = os.getenv("URL_SENDING_API_SERVICE")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")
@@ -86,6 +87,9 @@ DATABASES = {
         'PASSWORD': os.getenv("DB_PASSWORD"),
         'HOST': os.getenv("DB_HOST"),
         'PORT': os.getenv("DB_PORT"),
+        'OPTIONS': {
+                    'options': os.getenv("c_timezone"),
+                },
     }
 }
 
@@ -113,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = os.getenv("TIME_ZONE")
 
 USE_I18N = True
 
@@ -132,7 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Настройки Celery
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # URL для вашего брокера сообщений (например, Redis)
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # URL для хранения результатов задач
-CELERY_TIMEZONE = 'Europe/Moscow'  # Часовой пояс для Celery
+CELERY_TIMEZONE = TIME_ZONE  # Часовой пояс для Celery
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -146,13 +150,12 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAuthenticated'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
-    'DATETIME_FORMAT': '%Y-%m-%d',
+    'DATETIME_FORMAT': '"%Y-%m-%d %H:%M"',
 }
