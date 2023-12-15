@@ -13,7 +13,7 @@ admin service for mailing messenges to clients phone.
 8. in terminal start servise: python manage.py runserver
 
 # Logging
-all logging you can find in app dirictory in app.log
+all logging you can find in app dirictory in app.log file
 
 # API docs
 you are welcome to use Swagger UI, just add link /doc/ in your browser
