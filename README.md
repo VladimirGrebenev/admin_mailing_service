@@ -1,7 +1,7 @@
 # About admin_mailing_service
 admin service for mailing messenges to clients phone.
 
-# To start working
+# To start working development
 
 1. pull from github
 2. in terminal go to working dir: cd admin_mailing_service/admin_mailing/
