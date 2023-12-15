@@ -1,5 +1,5 @@
 # About admin_mailing_service
-admin service for mailing messenges to clients phone.
+admin service for mailing messenges to clients phones.
 
 # To start working development
 
