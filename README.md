@@ -17,7 +17,10 @@ admin service for mailing messenges to clients phones.
 12. go to the http://127.0.0.1:8000/ or http://127.0.0.1:8000/swagger/
 13. to use all opportunities you must registred here (http://127.0.0.1:8000/register/) id=null ,
     and after that login here (http://127.0.0.1:8000/api-auth/login/).
-14. enjoy
+14. if you what use front end WEB UI, you must install node js ( sudo apt install nodejs),
+    npx (sudo npm install -g npx).
+15. so, maybe you what to know what frontend I make by React - sudo npx create-react-app frontend
+16. enjoy
 
 # Logging
 - all logging you can find in app dir in the app.log file
