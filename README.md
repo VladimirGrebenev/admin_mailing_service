@@ -20,7 +20,8 @@ admin service for mailing messenges to clients phones.
 14. if you what use front end WEB UI, you must install node js ( sudo apt install nodejs),
     npx (sudo npm install -g npx).
 15. so, maybe you what to know what frontend I make by React - sudo npx create-react-app frontend
-16. enjoy
+16. ок, frontend WEB UI use on localhost:3000
+17. enjoy
 
 # Logging
 - all logging you can find in app dir in the app.log file
