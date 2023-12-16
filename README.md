@@ -20,7 +20,7 @@ admin service for mailing messenges to clients phones.
 14. if you what use front end WEB UI, you must install node js ( sudo apt install nodejs),
     npx (sudo npm install -g npx).
 15. so, maybe you what to know what frontend I make by React - sudo npx create-react-app frontend
-16. ок, frontend WEB UI use on localhost:3000
+16. ок, to use frontend WEB UI, you must go to frontend dir (cd frontend), and use command (npm run start), use WEB UI on localhost:3000
 17. enjoy
 
 # Logging
