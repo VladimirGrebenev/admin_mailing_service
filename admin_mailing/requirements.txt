@@ -24,6 +24,7 @@ inflection==0.5.1
 jsonschema==4.20.0
 jsonschema-specifications==2023.11.2
 kombu==5.3.4
+Markdown==3.5.1
 mixer==7.2.2
 packaging==23.2
 prompt-toolkit==3.0.41
