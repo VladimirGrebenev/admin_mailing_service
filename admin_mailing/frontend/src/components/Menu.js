@@ -19,8 +19,9 @@ const MenuList = ({menu_links, is_auth}) => {
                     <img src="https://www.veneberg81.ru/img/logo_v81_640_160.png"
                          width="112" height="28" alt="Veneberg81"></img>
                 </a>
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false"
-                   data-target="navbarBasicExample" onClick={toggleBurgerMenu}>
+                <a role="button" className="navbar-burger" aria-label="menu"
+                    aria-expanded="false"
+                    data-target="navbarBasicExample" onClick={toggleBurgerMenu}>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>

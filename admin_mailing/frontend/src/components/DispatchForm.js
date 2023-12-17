@@ -33,7 +33,7 @@ class DispatchForm extends React.Component {
                                 <label className="label">Старт рассылки</label>
                                 <div className="control">
                                     <input name="start_datetime" className="input"
-                                    type="text" placeholder="старт рассылки 2023-12-16T10:12"
+                                        type="text" placeholder="старт рассылки 2023-12-16T10:12"
                                            value={this.state.start_datetime}
                                            onChange={(event) => this.handleChange(event)}/>
                                 </div>

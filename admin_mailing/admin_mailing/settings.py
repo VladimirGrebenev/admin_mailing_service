@@ -17,7 +17,9 @@ DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = []
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000',]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # Application definition
 
@@ -148,9 +150,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.AllowAny'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
