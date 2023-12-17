@@ -5,8 +5,6 @@ from .serializers import ClientSerializer, DispatchSerializer, \
 from rest_framework.pagination import LimitOffsetPagination
 from .filters import MessageFilter, ClientFilter, DispatchFilter
 from drf_yasg.utils import swagger_auto_schema
-# from rest_framework.response import Response
-# from rest_framework import status
 
 
 # пагинатор для Client
@@ -30,35 +28,6 @@ class ClientListCreateView(generics.ListCreateAPIView):
     serializer_class = ClientSerializer
     pagination_class = ClientLimitOffsetPagination
     filterset_class = ClientFilter
-
-    # @swagger_auto_schema(
-    #     responses={200: ClientSerializer(many=True),
-    #                401: 'Unauthorized',
-    #                404: 'No clients found'},
-    #     operation_description="Method to fetch all the clients",
-    # )
-    # def get(self, request, format=None):
-    #     print("Get clients list called")
-    #     clients = Client.objects.all()
-    #     serializer = ClientSerializer(clients, many=True)
-    #     return Response(serializer.data)
-    #
-    # @swagger_auto_schema(
-    #     request_body=ClientSerializer,
-    #     responses={200: ClientSerializer(many=False),
-    #                401: 'Unauthorized',
-    #                201: 'Client Added'},
-    #     operation_description="Method to post a new Client",
-    # )
-    # def post(self, request, format=None):
-    #     print("Create Client called")
-    #     serializer = ClientSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data,
-    #                         status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors,
-    #                     status=status.HTTP_400_BAD_REQUEST)
 
 
 class ClientRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):

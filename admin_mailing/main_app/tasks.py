@@ -3,13 +3,14 @@ from celery import shared_task
 from datetime import datetime
 from django.utils import timezone
 from admin_mailing.settings import TOKEN_BEARER, URL_SENDING_API_SERVICE
+from admin_mailing.logging_config import logger
 
 
 @shared_task
 def process_dispatches():
     """Функция инициализации рассылок"""
     from .models import Dispatch, Message, Client
-    print(f'стартовал process_dispatches: {datetime.now(timezone.utc)}')
+    logger.info(f'стартовал process_dispatches: {datetime.now(timezone.utc)}')
     current_time = timezone.now()
     # фильтруем рассылки которые должны быть активированы
     active_dispatches = Dispatch.objects.filter(
@@ -55,13 +56,16 @@ def send_message_to_client(message):
         # Установка статуса отправки в True
         message.send_status = True
         message.save()  # Сохранение изменений в объекте message
+        logger.info(f'response: {response}, '
+                    f'status_code {response.status_code}, '
+                    f'message_id: {message.id}, '
+                    f'dispatch_id: {message.dispatch.uu_id}, '
+                    f'client_id: {message.client.uu_id}'
+                    )
     else:
         # Обработка случая, когда объект response является
         # None или код состояния не равен 200
         handle_message_error(message, response)
-
-    print(f'response: {response}, message_id: {message.id}, status_code '
-          f'{response.status_code}')
 
 
 def handle_message_error(message, error):
@@ -71,4 +75,8 @@ def handle_message_error(message, error):
     error_message = str(error)
     # Здесь можно добавить логику для обработки ошибки, например,
     # запись в журнал ошибок или отправку уведомления администратору
-    print(f"Ошибка при отправке сообщения {message.id}: {error_message}")
+    logger.info(f'Error: {error}, '
+                f'message_id: {message.id}, '
+                f'dispatch_id: {message.dispatch.uu_id}, '
+                f'client_id: {message.client.uu_id}'
+                )
