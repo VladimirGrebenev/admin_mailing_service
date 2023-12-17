@@ -1,7 +1,7 @@
 # About admin_mailing_service
 admin service for mailing messenges to clients phones.
 
-#Stack
+# Stack
 - Python 3.10
 - Django 4.2.8
 - Djangoresframework 3.14
