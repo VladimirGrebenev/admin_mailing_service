@@ -37,3 +37,9 @@ you are welcome to use Swagger UI, just add link /doc/ in your browser (http://1
 - to run tests please go to the working dir: cd admin_mailing_service/admin_mailing/
 - and run in terminal tis command: python manage.py test main_app.tests users.tests
 - !!! Dispatch tests only work when celery + redis is running, you can uncomment them
+
+# TODO:
+- frontend: creating new dispatches and clients
+- frontend: registration new users
+- frontend: statistics page
+- registration by OAuth2 
