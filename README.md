@@ -1,6 +1,16 @@
 # About admin_mailing_service
 admin service for mailing messenges to clients phones.
 
+#Stack
+- Python 3.10
+- Django 4.2.8
+- Djangoresframework 3.14
+- redis
+- celery
+- node js
+- react
+- more info in requirements.py 
+
 # To start working development
 
 1. pull from github
