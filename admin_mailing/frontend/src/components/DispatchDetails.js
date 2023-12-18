@@ -38,4 +38,4 @@ const DispatchDetails = ({dispatches, messages}) => {
     )
 }
 
-export default DispatchDetails
+export default DispatchDetails;

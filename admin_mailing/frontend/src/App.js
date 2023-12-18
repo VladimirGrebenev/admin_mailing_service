@@ -61,7 +61,10 @@ class App extends React.Component {
     }
 
     get_token(email, password) {
-        axios.post('http://127.0.0.1:8000/token-api-auth/', {username: email, password: password})
+        axios.post('http://127.0.0.1:8000/token-api-auth/', {
+            username: email,
+            password: password
+        })
             .then(response => {
                 this.set_token(response.data['token'], email)
                 alert('Вы авторизовались по почте: ' + email)
@@ -105,8 +108,11 @@ class App extends React.Component {
         if (this.is_authenticated()) {
             return (
                 <p>
-                    <button className="button is-primary">{this.state.email}</button>
-                    <button className="button is-light" onClick={() => this.logout()}>Log out</button>
+                    <button
+                        className="button is-primary">{this.state.email}</button>
+                    <button className="button is-light"
+                            onClick={() => this.logout()}>Log out
+                    </button>
                 </p>
             )
         } else {
@@ -151,7 +157,7 @@ class App extends React.Component {
             .then(response => {
                 this.setState({
                     dispatches: this.state.dispatches.filter((item) => item
-                    .uu_id !==uu_id)
+                        .uu_id !== uu_id)
                 })
             }).catch(error => console.log(error))
     }
@@ -167,29 +173,61 @@ class App extends React.Component {
             }).catch(error => console.log(error))
     }
 
-    createDispatch(start_datetime, end_datetime, message_text, tag_filter,
-    operator_code_filter) {
-        const headers = this.get_headers()
-        const data = {start_datetime: start_datetime, end_datetime:
-        end_datetime, message_text: message_text, tag_filter: tag_filter,
-        operator_code_filter: operator_code_filter}
+    createDispatch(start_datetime, end_datetime, message_text, tag_filter, operator_code_filter) {
+        const headers = this.get_headers();
+        const data = {
+            start_datetime: start_datetime,
+            end_datetime: end_datetime,
+            message_text: message_text,
+            tag_filter: tag_filter,
+            operator_code_filter: operator_code_filter
+        };
+
         axios.post(`http://127.0.0.1:8000/dispatches/`, data, {headers})
             .then(response => {
-                let new_dispatch = response.data
-                this.setState({messages: [...this.state.messages,
-                new_dispatch]})
-            }).catch(error => console.log(error))
-        window.location.href = "/dispatches"
+                let new_dispatch = response.data;
+                this.setState(prevState => ({
+                    dispatches: prevState.dispatches.concat(new_dispatch)
+                }));
+            })
+            .catch(error => console.log(error));
+
+        window.location.href = "/dispatches";
+    }
+
+    createClient(phone_number, operator_code, tag, timezone) {
+        const headers = this.get_headers();
+        const data = {
+            phone_number: phone_number,
+            operator_code: operator_code,
+            tag: tag,
+            timezone: timezone,
+        };
+
+        axios.post(`http://127.0.0.1:8000/clients/`, data, {headers})
+            .then(response => {
+                let new_client = response.data;
+                this.setState(prevState => ({
+                    clients: prevState.clients.concat(new_client)
+                }));
+            })
+            .catch(error => console.log(error));
+
+        window.location.href = "/clients";
     }
 
     createMessage(send_status, dispatch, client) {
         const headers = this.get_headers()
-        const data = {send_status: send_status, dispatch: dispatch, client: client}
+        const data = {
+            send_status: send_status,
+            dispatch: dispatch,
+            client: client
+        }
         axios.post(`http://127.0.0.1:8000/messages/`, data, {headers})
             .then(response => {
                 let new_message = response.data
                 const dispatch = this.state.dispatches.filter((item) => item
-                .uu_id === new_message.dispatch)[0]
+                    .uu_id === new_message.dispatch)[0]
                 new_message.dispatch = dispatch
                 this.setState({messages: [...this.state.messages, new_message]})
             }).catch(error => console.log(error))
@@ -201,16 +239,42 @@ class App extends React.Component {
         return (
             <div className="App">
                 <BrowserRouter>
-                    <MenuList menu_links={this.state.menu_links} is_auth={this.state.is_auth_link}/>
+                    <MenuList menu_links={this.state.menu_links}
+                              is_auth={this.state.is_auth_link}/>
                     <Switch>
-                        <Route exact path='/dispatches' component={() => <DispatchesList dispatches={this.state.dispatches} delete_dispatch={(uu_id) => this.delete_dispatch(uu_id)}/>}/>
-                        <Route exact path="/messages" component={() => <MessagesList messages={this.state.messages} dispatches={this.state.dispatches} clients={this.state.clients}delete_message={(id) => this.delete_message(id)}/>} />
-                        <Route exact path='/clients' component={() => <ClientList clients={this.state.clients}/>}/>
-                        <Route exact path='/login' component={() => <LoginForm get_token={(username, password) => this.get_token(username, password)}/>}/>
-                        <Route exact path='/dispatches/:uu_id' component={() => <DispatchDetails messages={this.state.messages} dispatches={this.state.dispatches}/>}/>
-                        <Route exact path='/clients/:uu_id' component={() => <ClientDispatches clients={this.state.clients} dispatches={this.state.dispatches}/>}/>
-                        <Route exact path='/dispatches/create' component={() => <DispatchForm clients={this.state.clients} createDispatch={(start_datetime, end_datetime, message_text, tag_filter, operator_code_filter) => this.createDispatch(start_datetime, end_datetime, message_text, tag_filter, operator_code_filter)}/>}/>
-                        <Route exact path='/clients/create' component={() => <ClientForm clients={this.state.clients} createClient={(phone_number, operator_code, tag, timezone) => this.createClient(phone_number, operator_code, tag, timezone)}/>}/>
+                        <Route exact path='/dispatches'
+                               component={() => <DispatchesList
+                                   dispatches={this.state.dispatches}
+                                   delete_dispatch={(uu_id) => this.delete_dispatch(uu_id)}/>}/>
+                        <Route exact path="/messages"
+                               component={() => <MessagesList
+                                   messages={this.state.messages}
+                                   dispatches={this.state.dispatches}
+                                   clients={this.state.clients}
+                                   delete_message={(id) => this.delete_message(id)}/>}/>
+                        <Route exact path='/clients'
+                               component={() => <ClientList
+                                   clients={this.state.clients}/>}/>
+                        <Route exact path='/login' component={() => <LoginForm
+                            get_token={(username, password) => this.get_token(username, password)}/>}/>
+                        <Route exact path='/clients/create'
+                               component={() => <ClientForm
+                                   clients={this.state.clients}
+                                   createClient={(phone_number, operator_code, tag, timezone) => this.createClient(phone_number, operator_code, tag, timezone)}/>}/>
+                        <Route exact path='/dispatches/create'
+                               component={() => <DispatchForm
+                                   dispatches={this.state.dispatches}
+                                   messages={this.state.messages}
+                                   clients={this.state.clients}
+                                   createDispatch={(start_datetime, end_datetime, message_text, tag_filter, operator_code_filter) => this.createDispatch(start_datetime, end_datetime, message_text, tag_filter, operator_code_filter)}/>}/>
+                        <Route exact path='/dispatches/:uu_id'
+                               component={() => <DispatchDetails
+                                   messages={this.state.messages}
+                                   dispatches={this.state.dispatches}/>}/>
+                        <Route exact path='/clients/:uu_id'
+                               component={() => <ClientDispatches
+                                   clients={this.state.clients}
+                                   dispatches={this.state.dispatches}/>}/>
                         <Redirect from='/' to='/dispatches'/>
                         <Route component={NotFound404}/>
                     </Switch>

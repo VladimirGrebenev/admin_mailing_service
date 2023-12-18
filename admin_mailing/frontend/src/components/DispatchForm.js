@@ -90,4 +90,4 @@ class DispatchForm extends React.Component {
     }
 }
 
-export default DispatchForm
+export default DispatchForm;

@@ -3,8 +3,8 @@ import React from 'react'
 class ClientForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {phone_number: '79834578640', operator_code: '983',
-         tag: 'mts', timezone: 'GMT+03'}
+        this.state = {phone_number: '', operator_code: '',
+         tag: '', timezone: ''}
     }
 
     handleChange(event) {
@@ -62,8 +62,8 @@ class ClientForm extends React.Component {
                                 <div className="control">
                                     <input name="timezone"
                                     className="input" type="text"
-                                    placeholder="часовой пояс"
-                                           value={this.state.timezoner}
+                                    placeholder="часовой пояс в формате GMT+03"
+                                           value={this.state.timezone}
                                            onChange={(event) => this.handleChange(event)}/>
                                 </div>
                             </div>

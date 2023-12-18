@@ -9,17 +9,17 @@ from drf_yasg.utils import swagger_auto_schema
 
 # пагинатор для Client
 class ClientLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 20
+    default_limit = 100
 
 
 # пагинатор для Dispatch
 class DispatchLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 20
+    default_limit = 100
 
 
 # пагинатор для Message
 class MessageLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 20
+    default_limit = 100
 
 
 class ClientListCreateView(generics.ListCreateAPIView):
