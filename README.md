@@ -1,6 +1,16 @@
 # About admin_mailing_service
 admin service for mailing messenges to clients phones.
 
+# Stack
+- Python 3.10
+- Django 4.2.8
+- Djangoresframework 3.14
+- redis
+- celery
+- node js
+- react
+- more info in requirements.py 
+
 # To start working development
 
 1. pull from github
@@ -10,7 +20,7 @@ admin service for mailing messenges to clients phones.
 5. edit your .env file to set you settings, you can check .env_sample file
 6. don't forget set you CORS_ALLOWED_ORIGINS in settings, don't use * set_all, set only your needed CORS
 7. in terminal install all requirements: pip install -r requirements.txt
-8. in terminal start redis: redis-cerver
+8. in terminal start redis: redis-server
 9. in terminal start celery: celery -A admin_mailing worker --loglevel=info
 10. in terminal staert celery beat: celery -A admin_mailing beat
 11. in terminal start servise: python manage.py runserver
@@ -37,3 +47,9 @@ you are welcome to use Swagger UI, just add link /doc/ in your browser (http://1
 - to run tests please go to the working dir: cd admin_mailing_service/admin_mailing/
 - and run in terminal tis command: python manage.py test main_app.tests users.tests
 - !!! Dispatch tests only work when celery + redis is running, you can uncomment them
+
+# TODO:
+- frontend: creating new dispatches and clients
+- frontend: registration new users
+- frontend: statistics page
+- registration by OAuth2 
