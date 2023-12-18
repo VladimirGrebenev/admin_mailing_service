@@ -20,7 +20,7 @@ admin service for mailing messenges to clients phones.
 5. edit your .env file to set you settings, you can check .env_sample file
 6. don't forget set you CORS_ALLOWED_ORIGINS in settings, don't use * set_all, set only your needed CORS
 7. in terminal install all requirements: pip install -r requirements.txt
-8. in terminal start redis: redis-cerver
+8. in terminal start redis: redis-server
 9. in terminal start celery: celery -A admin_mailing worker --loglevel=info
 10. in terminal staert celery beat: celery -A admin_mailing beat
 11. in terminal start servise: python manage.py runserver
