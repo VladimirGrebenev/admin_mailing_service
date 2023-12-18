@@ -3,8 +3,12 @@ import React from 'react'
 class ClientForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {phone_number: '', operator_code: '',
-         tag: '', timezone: ''}
+        this.state = {
+            phone_number: '',
+            operator_code: '',
+            tag: '',
+            timezone: ''
+        }
     }
 
     handleChange(event) {
@@ -17,7 +21,7 @@ class ClientForm extends React.Component {
 
     handleSubmit(event) {
         this.props.createClient(this.state.phone_number,
-         this.state.operator_code, this.state.tag, this.timezone)
+         this.state.operator_code, this.state.tag, this.state.timezone)
         event.preventDefault()
     }
 
@@ -79,4 +83,4 @@ class ClientForm extends React.Component {
     }
 }
 
-export default ClientForm
+export default ClientForm;
