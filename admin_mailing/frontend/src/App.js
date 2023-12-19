@@ -11,6 +11,7 @@ import AddFooter from "./components/Footer";
 import DispatchDetails from "./components/DispatchDetails";
 import ClientDispatches from "./components/ClientDispatches";
 import DispatchStatistics from "./components/DispatchStatistics";
+import RegisterForm from "./components/RegisterForm";
 import LoginForm from "./components/Auth";
 import DispatchForm from "./components/DispatchForm";
 import ClientForm from "./components/ClientForm";
@@ -120,8 +121,9 @@ class App extends React.Component {
         } else {
             return (
                 <p>
-                    <button className="button is-primary">гость</button>
-                    <Link to="/login" className="button is-link">Log in</Link>
+                    <button className="button is-primary">@guest</button>
+                    <Link to="/login" className="button is-link">Login</Link>
+                    <Link to="/register" className="button is-warning">Register</Link>
                 </p>
             );
         }
@@ -278,6 +280,7 @@ class App extends React.Component {
                                    messages={this.state.messages}/>}/>
                         <Route exact path='/login' component={() => <LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
+                        <Route path="/register" component={RegisterForm} />
                         <Route exact path='/clients/create'
                                component={() => <ClientForm
                                    clients={this.state.clients}
