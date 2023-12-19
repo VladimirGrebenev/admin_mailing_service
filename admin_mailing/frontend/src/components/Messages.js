@@ -10,7 +10,10 @@ const MessageItem = ({message, dispatches, clients, delete_message}) => {
         <tr>
             <td>{message.id}</td>
             <td>{message.send_status ? "Отправлено" : "Не отправлено"}</td>
-            <td>{message.dispatch}</td>
+            <td>
+                <Link
+                    to={`dispatches/${dispatch.uu_id}`}>{dispatch.uu_id}</Link>
+            </td>
             <td>{dispatch.start_datetime}</td>
             <td>{dispatch.end_datetime}</td>
             <td>{client.phone_number}</td>
