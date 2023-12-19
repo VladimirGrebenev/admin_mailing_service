@@ -2,10 +2,6 @@ import React from "react"
 import {Link, useParams} from "react-router-dom"
 
 const MessageItem = ({message}) => {
-    // Find the corresponding dispatch and client objects
-    // const dispatch = dispatches.find((d) => d.uu_id === message.dispatch);
-    // const client = clients.find((c) => c.uu_id === message.client);
-
     return (
         <tr>
             <td>{message.id}</td>

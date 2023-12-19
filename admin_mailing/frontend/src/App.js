@@ -1,15 +1,17 @@
 import React from "react";
+import {BrowserRouter, Link, Redirect, Route, Switch} from "react-router-dom";
+import Cookies from "universal-cookie";
+import axios from "axios";
+
 import ClientList from "./components/Clients";
 import DispatchesList from "./components/Dispatches";
 import MessagesList from "./components/Messages";
 import MenuList from "./components/Menu";
 import AddFooter from "./components/Footer";
 import DispatchDetails from "./components/DispatchDetails";
-import LoginForm from "./components/Auth";
-import {BrowserRouter, Link, Redirect, Route, Switch} from "react-router-dom";
-import Cookies from "universal-cookie";
-import axios from "axios";
 import ClientDispatches from "./components/ClientDispatches";
+import DispatchStatistics from "./components/DispatchStatistics";
+import LoginForm from "./components/Auth";
 import DispatchForm from "./components/DispatchForm";
 import ClientForm from "./components/ClientForm";
 
@@ -140,6 +142,10 @@ class App extends React.Component {
                 'link_name': 'Клиенты',
                 'menu_link': '/clients'
             },
+            {
+                'link_name': 'Статистика',
+                'menu_link': '/statistics'
+            },
         ]
 
         this.setState(
@@ -266,6 +272,10 @@ class App extends React.Component {
                         <Route exact path='/clients'
                                component={() => <ClientList clients={this.state.clients}
                                delete_client={(uu_id) => this.delete_client(uu_id)}/>}/>
+                        <Route exact path='/statistics'
+                               component={() => <DispatchStatistics
+                                   dispatches={this.state.dispatches}
+                                   messages={this.state.messages}/>}/>
                         <Route exact path='/login' component={() => <LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
                         <Route exact path='/clients/create'
