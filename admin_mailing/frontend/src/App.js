@@ -253,10 +253,6 @@ class App extends React.Component {
                     <MenuList menu_links={this.state.menu_links}
                               is_auth={this.state.is_auth_link}/>
                     <Switch>
-                        <Route exact path='/clients/:uu_id'
-                               component={() => <ClientDispatches
-                                   clients={this.state.clients}
-                                   dispatches={this.state.dispatches}/>}/>
                         <Route exact path='/dispatches'
                                component={() => <DispatchesList
                                    dispatches={this.state.dispatches}
@@ -282,13 +278,17 @@ class App extends React.Component {
                                    messages={this.state.messages}
                                    clients={this.state.clients}
                                    createDispatch={(start_datetime, end_datetime, message_text, tag_filter, operator_code_filter) => this.createDispatch(start_datetime, end_datetime, message_text, tag_filter, operator_code_filter)}/>}/>
+                        <Route exact path='/clients/:uu_id'
+                               component={() => <ClientDispatches
+                                   clients={this.state.clients}
+                                   dispatches={this.state.dispatches}/>}/>
                         <Route exact path='/dispatches/:uu_id'
                                component={() => <DispatchDetails
                                    messages={this.state.messages}
                                    clients={this.state.clients}
                                    dispatches={this.state.dispatches}/>}/>
 
-                        {/*<Redirect from='/' to='/dispatches'/>*/}
+                        <Redirect from='/' to='/dispatches'/>
                         <Route component={NotFound404}/>
                     </Switch>
                 </BrowserRouter>

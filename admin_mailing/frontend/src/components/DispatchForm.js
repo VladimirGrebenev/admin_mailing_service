@@ -3,8 +3,12 @@ import React from 'react'
 class DispatchForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {start_datetime: '2023-12-16T10:12', end_datetime: '2023-12-16T10:12',
-         message_text: '', tag_filter: '', operator_code_filter: ''}
+        const now = new Date();
+        const tenMinutesLater = new Date(now.getTime() + 10 * 60000); // 10 minutes later
+        this.state = {
+            start_datetime: now.toISOString().slice(0, 16),
+            end_datetime: tenMinutesLater.toISOString().slice(0, 16),
+            message_text: '', tag_filter: '', operator_code_filter: ''}
     }
 
     handleChange(event) {
