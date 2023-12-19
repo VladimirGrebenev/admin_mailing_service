@@ -5,7 +5,7 @@ const DispatchItem = ({dispatch, delete_dispatch}) => {
     return (
         <tr>
             <td>
-                <Link to={`dispatch/${dispatch.uu_id}`}>{dispatch.uu_id}</Link>
+                <Link to={`dispatches/${dispatch.uu_id}`}>{dispatch.uu_id}</Link>
             </td>
             <td>{dispatch.start_datetime}</td>
             <td>{dispatch.end_datetime}</td>
@@ -44,4 +44,4 @@ const DispatchesList = ({dispatches, delete_dispatch}) => {
     )
 }
 
-export default DispatchesList
+export default DispatchesList;

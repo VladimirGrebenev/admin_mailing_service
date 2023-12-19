@@ -1,7 +1,7 @@
 import React from "react"
 import {Link, useParams} from "react-router-dom";
 
-const DispatchItem = ({dispatch}) => {
+const DispatchItem = ({dispatch, delete_dispatch}) => {
     return (
         <tr>
             <td>
@@ -9,6 +9,11 @@ const DispatchItem = ({dispatch}) => {
             </td>
             <td>{dispatch.start_datetime}</td>
             <td>{dispatch.end_datetime}</td>
+            <td>{dispatch.message_text}</td>
+            <td>{dispatch.tag_filter}</td>
+            <td>{dispatch.operator_code_filter}</td>
+            <td><button class='button is-danger' type='button'
+                        onClick={()=>delete_dispatch(dispatch.uu_id)}>Удалить</button></td>
         </tr>
     )
 }
@@ -28,8 +33,11 @@ const ClientDispatches = ({clients, dispatches}) => {
             </p>
             <table className="table is-narrow is-fullwidth">
                 <thead className="has-background-info-light">
-                <th>Старт рассылки</th>
-                <th>Конец рассылки</th>
+                    <th>Старт рассылки</th>
+                    <th>Конец рассылки</th>
+                    <th>Сообщение</th>
+                    <th>Тег</th>
+                    <th>Код оператора</th>
                 </thead>
                 {filtered_dispatches.map((dispatch) => <DispatchItem dispatch={dispatch}/>)}
             </table>
@@ -37,4 +45,4 @@ const ClientDispatches = ({clients, dispatches}) => {
     )
 }
 
-export default ClientDispatches
+export default ClientDispatches;

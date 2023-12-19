@@ -49,4 +49,4 @@ const MessagesList = ({messages, clients, dispatches, delete_message}) => {
     )
 }
 
-export default MessagesList
+export default MessagesList;

@@ -173,6 +173,17 @@ class App extends React.Component {
             }).catch(error => console.log(error))
     }
 
+    delete_client(uu_id) {
+        const headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/clients/${uu_id}`, {headers})
+            .then(response => {
+                this.setState({
+                    clients: this.state.clients.filter((item) => item
+                        .uu_id !== uu_id)
+                })
+            }).catch(error => console.log(error))
+    }
+
     createDispatch(start_datetime, end_datetime, message_text, tag_filter, operator_code_filter) {
         const headers = this.get_headers();
         const data = {
@@ -242,6 +253,10 @@ class App extends React.Component {
                     <MenuList menu_links={this.state.menu_links}
                               is_auth={this.state.is_auth_link}/>
                     <Switch>
+                        <Route exact path='/clients/:uu_id'
+                               component={() => <ClientDispatches
+                                   clients={this.state.clients}
+                                   dispatches={this.state.dispatches}/>}/>
                         <Route exact path='/dispatches'
                                component={() => <DispatchesList
                                    dispatches={this.state.dispatches}
@@ -253,8 +268,8 @@ class App extends React.Component {
                                    clients={this.state.clients}
                                    delete_message={(id) => this.delete_message(id)}/>}/>
                         <Route exact path='/clients'
-                               component={() => <ClientList
-                                   clients={this.state.clients}/>}/>
+                               component={() => <ClientList clients={this.state.clients}
+                               delete_client={(uu_id) => this.delete_client(uu_id)}/>}/>
                         <Route exact path='/login' component={() => <LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
                         <Route exact path='/clients/create'
@@ -270,12 +285,10 @@ class App extends React.Component {
                         <Route exact path='/dispatches/:uu_id'
                                component={() => <DispatchDetails
                                    messages={this.state.messages}
-                                   dispatches={this.state.dispatches}/>}/>
-                        <Route exact path='/clients/:uu_id'
-                               component={() => <ClientDispatches
                                    clients={this.state.clients}
                                    dispatches={this.state.dispatches}/>}/>
-                        <Redirect from='/' to='/dispatches'/>
+
+                        {/*<Redirect from='/' to='/dispatches'/>*/}
                         <Route component={NotFound404}/>
                     </Switch>
                 </BrowserRouter>

@@ -5,7 +5,7 @@ const ClientItem = ({client, delete_client}) => {
     return (
         <tr>
             <td>
-                <Link to={`client/${client.uu_id}`}>{client.phone_number}</Link>
+                <Link to={`clients/${client.uu_id}`}>{client.phone_number}</Link>
             </td>
             <td>{client.operator_code}</td>
             <td>{client.tag}</td>
