@@ -18,12 +18,7 @@ const RegisterForm = () => {
             .post("http://127.0.0.1:8000/users/register/", user)
             .then((response) => {
                 console.log(response.data);
-                // успешная регистрация
-                this.props.get_token(response.data['email'], response.data['password'])
-                // this.set_token(response.data['token'], response.data['email']);
-                // перенаправление на главную страницу
-                window.location.href = "/";
-
+                this.props.get_token(user.email, user.password)
             })
             .catch((error) => {
                 console.log(error);
@@ -76,39 +71,6 @@ const RegisterForm = () => {
                 <div className="column"></div>
             </div>
         </div>
-        // <div>
-        //   <h2>Регистрация нового пользователя</h2>
-        //   <form onSubmit={handleSubmit}>
-        //     <div>
-        //       <label>Имя пользователя:</label>
-        //       <input
-        //         type="text"
-        //         name="user_name"
-        //         value={user.user_name}
-        //         onChange={handleChange}
-        //       />
-        //     </div>
-        //     <div>
-        //       <label>Email:</label>
-        //       <input
-        //         type="email"
-        //         name="email"
-        //         value={user.email}
-        //         onChange={handleChange}
-        //       />
-        //     </div>
-        //     <div>
-        //       <label>Пароль:</label>
-        //       <input
-        //         type="password"
-        //         name="password"
-        //         value={user.password}
-        //         onChange={handleChange}
-        //       />
-        //     </div>
-        //     <button type="submit">Зарегистрироваться</button>
-        //   </form>
-        // </div>
     );
 };
 
