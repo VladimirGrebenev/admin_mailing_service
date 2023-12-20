@@ -11,7 +11,7 @@ import AddFooter from "./components/Footer";
 import DispatchDetails from "./components/DispatchDetails";
 import ClientDispatches from "./components/ClientDispatches";
 import DispatchStatistics from "./components/DispatchStatistics";
-import RegisterForm from "./components/RegisterForm";
+import RegisterUser from "./components/RegisterUser";
 import LoginForm from "./components/Auth";
 import DispatchForm from "./components/DispatchForm";
 import ClientForm from "./components/ClientForm";
@@ -280,7 +280,7 @@ class App extends React.Component {
                                    messages={this.state.messages}/>}/>
                         <Route exact path='/login' component={() => <LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
-                        <Route path="/register" component={() => <RegisterForm
+                        <Route path="/register" component={() => <RegisterUser
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
                         <Route exact path='/clients/create'
                                component={() => <ClientForm
