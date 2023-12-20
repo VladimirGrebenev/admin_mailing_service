@@ -1,0 +1,79 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./admin_mailing/admin_mailing
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./admin_mailing/admin_mailing:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - redis
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+  frontend:
+    build:
+      context: ./admin_mailing/frontend
+    command: npm run start
+    volumes:
+      - ./admin_mailing/frontend:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+
+  celery_worker:
+    build:
+      context: ./admin_mailing/admin_mailing
+    command: celery -A admin_mailing worker --loglevel=info
+    volumes:
+      - ./admin_mailing/admin_mailing:/app
+    depends_on:
+      - redis
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+  celery_beat:
+    build:
+      context: ./admin_mailing/admin_mailing
+    command: celery -A admin_mailing beat
+    volumes:
+      - ./admin_mailing/admin_mailing:/app
+    depends_on:
+      - redis
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
