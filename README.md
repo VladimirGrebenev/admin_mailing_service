@@ -49,6 +49,5 @@ you are welcome to use Swagger UI, just add link /doc/ in your browser (http://1
 - !!! Dispatch tests only work when celery + redis is running, you can uncomment them
 
 # TODO:
-- frontend: registration new users
 - docker package
 - registration by OAuth2 
