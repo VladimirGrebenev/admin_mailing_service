@@ -5,10 +5,10 @@ admin service for mailing messenges to clients phones.
 - Python 3.10
 - Django 4.2.8
 - Djangoresframework 3.14
-- redis
-- celery
-- node js
-- react
+- Redis
+- Celery
+- Node.js
+- React
 - more info in requirements.py 
 
 # To start working development
