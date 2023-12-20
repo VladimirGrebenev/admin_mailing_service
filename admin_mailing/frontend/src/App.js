@@ -280,7 +280,8 @@ class App extends React.Component {
                                    messages={this.state.messages}/>}/>
                         <Route exact path='/login' component={() => <LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
-                        <Route path="/register" component={RegisterForm} />
+                        <Route path="/register" component={() => <RegisterForm
+                            get_token={(username, password) => this.get_token(username, password)}/>}/>
                         <Route exact path='/clients/create'
                                component={() => <ClientForm
                                    clients={this.state.clients}

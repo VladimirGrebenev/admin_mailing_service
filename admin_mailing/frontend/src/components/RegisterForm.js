@@ -18,7 +18,8 @@ const RegisterForm = () => {
             .post("http://127.0.0.1:8000/users/register/", user)
             .then((response) => {
                 console.log(response.data);
-                this.props.get_token(user.email, user.password)
+                alert('Вы зарегистрировались по почте: ' + user.email);
+                this.get_token(user.email, user.password);
             })
             .catch((error) => {
                 console.log(error);
