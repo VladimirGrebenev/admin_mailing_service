@@ -1,5 +1,5 @@
 # About admin_mailing_service
-admin service for mailing messenges to clients phones.
+admin service for mailing messages to clients phones.
 
 # Stack
 - Python 3.10
