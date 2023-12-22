@@ -28,7 +28,7 @@ schema_view = get_schema_view(
         license=openapi.License(name="MIT License"),
     ),
     public=True,
-    permission_classes=[permissions.IsAuthenticated],
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly],
 )
 
 urlpatterns += [
