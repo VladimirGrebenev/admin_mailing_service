@@ -11,6 +11,18 @@ admin service for mailing messages to clients phones.
 - React
 - more info in requirements.py 
 
+
+# to start app in docker
+1. pull project
+2. switch to deploy branch: git checkout deploy
+3. create you .env file from sample [.env_sample](https://github.com/VladimirGrebenev/admin_mailing_service/blob/deploy/admin_mailing/.env_sample)
+4. install [docker and docker-compose](https://www.docker.com/)
+5. go to the dir /admin_mailing_service/
+6. run docker-compose: docker-compose up --build
+7. go to the [http://0.0.0.0:8000/docs/](http://0.0.0.0:8000/docs/)
+8. if you wanted not only see, you must create user /user/register/
+9. and login with new user [http://0.0.0.0:8000/api-auth/login](http://0.0.0.0:8000/api-auth/login)
+
 # To start working development
 
 1. pull master from github
