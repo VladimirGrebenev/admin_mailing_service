@@ -9,6 +9,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: admin_mailing_service_db
+
   backend:
     build:
       context: .
@@ -17,15 +18,25 @@ services:
     command: bash -c "
       ./wait-for-postgres.sh db
       && python manage.py migrate
+      && python manage.py collectstatic --noinput
       && gunicorn admin_mailing.wsgi -b 0.0.0.0:8080
       "
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
     depends_on:
       - db
-    volumes:
-      - ./admin_mailing/static:/app/static
+
   nginx:
     build: ./nginx
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
     ports:
       - 8000:80
     depends_on:
       - backend
+
+volumes:
+  static_volume:
+  media_volume:

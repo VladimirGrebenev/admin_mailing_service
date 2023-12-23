@@ -12,6 +12,9 @@ RUN pip3 install --upgrade pip
 # Назначение рабочей директории в контейнере
 WORKDIR /app
 
+RUN mkdir -p /static/
+RUN mkdir -p /media/
+
 # Копирование файлов и установка зависимостей
 COPY ./admin_mailing/ ./
 RUN pip3 install -r requirements.txt
