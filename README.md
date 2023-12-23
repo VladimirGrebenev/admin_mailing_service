@@ -20,7 +20,7 @@ admin service for mailing messages to clients phones.
 5. go to the dir /admin_mailing_service/
 6. run docker-compose: docker-compose up --build
 7. go to the [http://0.0.0.0:8000/docs/](http://0.0.0.0:8000/docs/)
-8. if you wanted not only see, you must create user /user/register/
+8. if you wanted not only see, but create some dispatches, you must create user /user/register/
 9. and login with new user [http://0.0.0.0:8000/api-auth/login](http://0.0.0.0:8000/api-auth/login)
 
 # To start working development
