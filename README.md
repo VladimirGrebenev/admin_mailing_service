@@ -22,6 +22,7 @@ admin service for mailing messages to clients phones.
 7. go to the [http://0.0.0.0:8000/docs/](http://0.0.0.0:8000/docs/)
 8. if you wanted not only see, but create some dispatches, you must create user /user/register/
 9. and login with new user [http://0.0.0.0:8000/api-auth/login](http://0.0.0.0:8000/api-auth/login)
+10. frontend on docker coming soon...
 
 # To start working development
 
