@@ -15,11 +15,19 @@ URL_SENDING_API_SERVICE = os.getenv("URL_SENDING_API_SERVICE")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1", "nginx"]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080", "http://0.0.0.0:8080",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://0.0.0.0:8000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
 
 # Application definition
 
