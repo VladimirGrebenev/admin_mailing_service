@@ -16,13 +16,14 @@ admin service for mailing messages to clients phones.
 1. pull project
 2. switch to deploy branch: git checkout deploy
 3. create you .env file from sample [.env_sample](https://github.com/VladimirGrebenev/admin_mailing_service/blob/deploy/admin_mailing/.env_sample)
-4. install [docker and docker-compose](https://www.docker.com/)
-5. go to the dir /admin_mailing_service/
-6. run docker-compose: docker-compose up --build
-7. go to the [http://0.0.0.0:8000/docs/](http://0.0.0.0:8000/docs/)
-8. if you wanted not only see, but create some dispatches, you must create user /user/register/
-9. and login with new user [http://0.0.0.0:8000/api-auth/login](http://0.0.0.0:8000/api-auth/login)
-10. frontend on docker coming soon...
+4. go to frontend dir and build: npm run build
+5. install [docker and docker-compose](https://www.docker.com/)
+6. go to the dir /admin_mailing_service/
+7. run docker-compose: docker-compose up --build
+8. go to the [http://0.0.0.0:8000/docs/](http://0.0.0.0:8000/docs/)
+9. if you wanted not only see, but create some dispatches, you must create user /user/register/
+10. and login with new user [http://0.0.0.0:8000/api-auth/login](http://0.0.0.0:8000/api-auth/login)
+11. frontend on docker coming soon...
 
 # To start working development
 
