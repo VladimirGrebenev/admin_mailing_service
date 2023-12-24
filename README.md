@@ -1,19 +1,32 @@
 # About admin_mailing_service
-admin service for mailing messenges to clients phones.
+admin service for mailing messages to clients phones.
 
 # Stack
 - Python 3.10
 - Django 4.2.8
 - Djangoresframework 3.14
-- redis
-- celery
-- node js
-- react
+- Redis
+- Celery
+- Node.js
+- React
 - more info in requirements.py 
+
+
+# to start app in docker
+1. pull project
+2. switch to deploy branch: git checkout deploy
+3. create you .env file from sample [.env_sample](https://github.com/VladimirGrebenev/admin_mailing_service/blob/deploy/admin_mailing/.env_sample)
+4. install [docker and docker-compose](https://www.docker.com/)
+5. go to the dir /admin_mailing_service/
+6. run docker-compose: docker-compose up --build
+7. go to the [http://0.0.0.0:8000/docs/](http://0.0.0.0:8000/docs/)
+8. if you wanted not only see, but create some dispatches, you must create user /user/register/
+9. and login with new user [http://0.0.0.0:8000/api-auth/login](http://0.0.0.0:8000/api-auth/login)
+10. frontend on docker coming soon...
 
 # To start working development
 
-1. pull from github
+1. pull master from github
 2. in terminal go to working dir: cd admin_mailing_service/admin_mailing/
 3. don't foget install posgtres, redis, celery
 4. create postgres database
@@ -49,6 +62,5 @@ you are welcome to use Swagger UI, just add link /doc/ in your browser (http://1
 - !!! Dispatch tests only work when celery + redis is running, you can uncomment them
 
 # TODO:
-- frontend: registration new users
 - docker package
 - registration by OAuth2 

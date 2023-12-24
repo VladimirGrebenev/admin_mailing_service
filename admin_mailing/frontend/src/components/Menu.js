@@ -15,7 +15,7 @@ const MenuList = ({menu_links, is_auth}) => {
     return (
         <nav className="navbar has-shadow" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href="http://localhost:3000/">
+                <a className="navbar-item" href="http://localhost/">
                     <img src="https://www.veneberg81.ru/img/logo_v81_640_160.png"
                          width="112" height="28" alt="Veneberg81"></img>
                 </a>

@@ -37,6 +37,13 @@ services:
     depends_on:
       - backend
 
+  frontend:
+    build: ./admin_mailing/frontend
+    ports:
+      - 80:80
+    depends_on:
+      - nginx
+
 volumes:
   static_volume:
   media_volume:
