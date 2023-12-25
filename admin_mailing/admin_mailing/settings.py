@@ -17,17 +17,19 @@ DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1", "nginx"]
 
+CORS_ALLOW_ALL_ORIGINS: True
+
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:8000",
-    "http://localhost:8000",
+    'http://0.0.0.0:8000', 'http://0.0.0.0:80', 'http://0.0.0.0:8080',
+    'http://0.0.0.0', 'http://0.0.0.0:'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "http://0.0.0.0",
+    "http://localhost",
+    "http://127.0.0.1",
     "http://0.0.0.0:8000",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
 ]
-
 
 # Application definition
 
@@ -40,10 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # other
+    'corsheaders',
     'rest_framework',
     'drf_yasg',
     'django_celery_beat',
-    'corsheaders',
     'rest_framework.authtoken',
     'django_filters',
 
@@ -96,8 +98,8 @@ DATABASES = {
         'HOST': os.getenv("DB_HOST"),
         'PORT': os.getenv("DB_PORT"),
         'OPTIONS': {
-                    'options': os.getenv("c_timezone"),
-                },
+            'options': os.getenv("c_timezone"),
+        },
     }
 }
 
@@ -160,7 +162,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated'
     ],
